@@ -1,15 +1,19 @@
 ## Bet2Win App
 # Python Scraping App with MongoDB for persistence
 
-# creating the Pipfile and Pipfile.lock
+## creating the Pipfile and Pipfile.lock
 > pipenv --python 3.7
 
-# installing the dependencies
+## installing the dependencies
 > pipenv install Flask
+
 > pipenv install requests
 
-# run the application
+> pipenv install gunicorn
+
+
+## run the application
 > pipenv run python app.py
 
-# install it as a development dependency using --dev
+## install it as a development dependency using --dev
 > pipenv lock -r > requirements.txt
