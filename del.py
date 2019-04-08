@@ -9,5 +9,7 @@ soup = BeautifulSoup(res.content,'lxml')
 # * table = soup.find_all('table')[0] 
 table = soup.find('table', attrs={'class':'main'})
 df = pd.read_html(str(table))[0]
+data = df.to_json(orient = "records")
 
-print(df)
+print (type(data))
+print(data)

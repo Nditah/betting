@@ -15,6 +15,7 @@
 
 > pipenv install pandas
 
+> pipenv install Flask-PyMongo
 
 ## run the application
 > pipenv run python app.py
