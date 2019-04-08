@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, make_response
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -23,6 +23,11 @@ mongo = PyMongo(app)
 def index():
    return render_template("index.html")
 
+@app.route('/user')
+def user():
+   return render_template('user.html')
+
+
 @app.route("/tips")
 def get_tips():
     r = Response(response=data, status=200, mimetype="application/json")
@@ -39,11 +44,35 @@ def leagues_page():
     online_users = mongo.db.users.find({"online": True})
     return render_template("index.html", online_users=online_users)
 
-@app.route('/result')
-def result():
+@app.route('/match')
+def match():
    dict = { 'phy':50, 'che':60, 'maths':70 }
-   return render_template('result.html', result = dict)
+   return render_template('match.html', record = dict)
+
+@app.route('/result', methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      return render_template("result.html", result = result)
+
+@app.route('/setcookie', methods = ['POST', 'GET'])
+def setcookie():
+    if request.method == 'POST':
+        user = request.form['nm']
+    resp = make_response(render_template('readcookie.html'))
+    resp.set_cookie('userID', user)
+    return resp
+
+@app.route('/getcookie')
+def getcookie():
+   name = request.cookies.get('userID')
+   return '<h1>welcome '+name+'</h1>'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
 
+# TODO style static pages: today, tomorrow. admin http://tutorialspoint.com/flask/
+# TODO connect to MongoDB with dot env https://flask-pymongo.readthedocs.io/en/latest/
+# TODO admin user registration, login
+# ? READ  
