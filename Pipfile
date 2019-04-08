@@ -4,11 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 requests = "*"
 flask = "*"
 gunicorn = "*"
+beautifulsoup4 = "*"
+urllib2 = "*"
+pandas = "*"
+tabulate = "*"
+lxml = "*"
+html5lib = "*"
+flask-pymongo = "*"
 
 [requires]
 python_version = "3.7"
