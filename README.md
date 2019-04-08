@@ -11,6 +11,10 @@
 
 > pipenv install gunicorn
 
+> pipenv install BeautifulSoup4
+
+> pipenv install pandas
+
 
 ## run the application
 > pipenv run python app.py
